@@ -1,7 +1,6 @@
 import pandas as pd
 from pyomo.environ import ConcreteModel, Var, Objective, Constraint, maximize, SolverFactory, Binary
 
-# Lê dados do CSV com pandas, especificando o delimitador como ';'
 df = pd.read_csv('pesos.csv', sep=';')
 
 pesos = {}
@@ -10,10 +9,10 @@ S = set()
 H = set()
 
 for _, row in df.iterrows():
-    d = str(row.iloc[0]).strip()   # Primeira coluna: Disciplina
-    s = str(row.iloc[1]).strip()   # Segunda coluna: Sala
-    h = str(row.iloc[2]).strip()   # Terceira coluna: Horario
-    p = int(row.iloc[3])           # Quarta coluna: Peso
+    d = str(row.iloc[0]).strip()   
+    s = str(row.iloc[1]).strip()   
+    h = str(row.iloc[2]).strip()   
+    p = int(row.iloc[3])           
     pesos[(d, s, h)] = p
     D.add(d)
     S.add(s)
