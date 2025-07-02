@@ -50,7 +50,6 @@ modelo.restricao_sala = Constraint([(s, h) for s in S for h in H], rule=restrica
 solver = SolverFactory('glpk', executable="winglpk-4.65\\glpk-4.65\\w64\\glpsol.exe")
 solver.solve(modelo)
 
-# Preparar os resultados para salvar em um DataFrame
 resultados = []
 for d, s, h in pesos:
     if modelo.x[d, s, h].value == 1:
@@ -61,10 +60,8 @@ for d, s, h in pesos:
             'Peso': pesos[(d, s, h)]
         })
 
-# Criar DataFrame com os resultados
 df_resultados = pd.DataFrame(resultados)
 
-# Salvar o DataFrame em um arquivo CSV separado por ';'
 df_resultados.to_csv('resultados.csv', sep=';', index=False)
 
 print("Resultados salvos em 'resultados.csv'.")
